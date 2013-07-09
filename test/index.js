@@ -61,3 +61,19 @@ test('successfully discovered WebMention server URL from link header', function 
     t.end();
   });
 });
+
+test('discover WebMention server URL from HTML body', function (t) {
+  var target = 'http://' + host + ':' + port + '/good_url';
+  var server = http.createServer(function (req, res) {
+    res.statusCode = 200;
+    res.end('<html><head><link rel="http://webmention.org/" href="http://example.org/webmention"></head><body></body></html>');
+    req.connection.destroy();
+  }).listen(port);
+
+  lookupWebmentionServer(target, function (err, url) {
+    server.close();
+    t.error(err);
+    t.equal(url, 'http://example.org/webmention');
+    t.end();
+  });
+});
