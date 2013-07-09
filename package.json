@@ -1,0 +1,24 @@
+{
+  "name": "lookup-webmention-server",
+  "version": "0.0.1",
+  "description": "Discover the webmention server for a given URL",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/tape/bin/tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connrs/node-lookup-webmention-server.git"
+  },
+  "keywords": [
+    "webmention"
+  ],
+  "author": "connrs",
+  "license": "BSD-3",
+  "devDependencies": {
+    "tape": "~1.0.4"
+  },
+  "dependencies": {
+    "request": "~2.22.0"
+  }
+}
