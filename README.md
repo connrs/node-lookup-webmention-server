@@ -1,6 +1,6 @@
 # Lookup WebMention Server
 
-[![Travis CI Test Status](https://travis-ci.org/connrs/gedcom-stream.png)](https://travis-ci.org/connrs/gedcom-stream)
+[![Travis CI Test Status](https://travis-ci.org/connrs/node-lookup-webmention-server.png)](https://travis-ci.org/connrs/node-lookup-webmention-server)
 
 Discover the [WebMention](http://webmention.org/) server for a given URL.
 
