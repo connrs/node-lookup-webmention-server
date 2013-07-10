@@ -77,3 +77,18 @@ test('discover WebMention server URL from HTML body', function (t) {
     t.end();
   });
 });
+
+test('the text test as a HTML response triggers no error', function (t) {
+  var target = 'http://' + host + ':' + port + '/good_url';
+  var server = http.createServer(function (req, res) {
+    res.statusCode = 200;
+    res.end('test');
+    req.connection.destroy();
+  }).listen(port);
+
+  lookupWebmentionServer(target, function (err, url) {
+    server.close();
+    t.error(err);
+    t.end();
+  });
+});
