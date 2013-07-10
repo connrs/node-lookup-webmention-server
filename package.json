@@ -1,6 +1,6 @@
 {
   "name": "lookup-webmention-server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Discover the webmention server for a given URL",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "tape": "~1.0.4"
   },
   "dependencies": {
-    "request": "~2.22.0"
+    "request": "~2.22.0",
+    "jsdom": "~0.7.0"
   }
 }
