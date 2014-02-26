@@ -78,6 +78,22 @@ test('discover WebMention server URL from HTML body', function (t) {
   });
 });
 
+test('discover WebMention server URL from HTML body with v0.2 rel attribute', function (t) {
+  var target = 'http://' + host + ':' + port + '/good_url';
+  var server = http.createServer(function (req, res) {
+    res.statusCode = 200;
+    res.end('<html><head><link rel="stylesheet" href="fail.css"><link rel="webmention" href="http://example.org/webmention"></head><body></body></html>');
+    req.connection.destroy();
+  }).listen(port);
+
+  lookupWebmentionServer(target, function (err, url) {
+    server.close();
+    t.error(err);
+    t.equal(url, 'http://example.org/webmention');
+    t.end();
+  });
+});
+
 test('the text test as a HTML response triggers no error', function (t) {
   var target = 'http://' + host + ':' + port + '/good_url';
   var server = http.createServer(function (req, res) {
