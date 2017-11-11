@@ -14,7 +14,7 @@
     "webmention"
   ],
   "author": "connrs",
-  "license": "BSD-3",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "tape": "^4.8.0"
   },
