@@ -8,7 +8,6 @@ test('no WebMention server is found', function (t) {
   var target = 'http://' + host + ':' + port + '/test2';
   var server = http.createServer(function (req, res) {
     res.end('test');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
@@ -24,7 +23,6 @@ test('target server returns 4xx status code', function (t) {
     res.statusCode = 404;
     res.setHeader('Link', '<http://example.org/webmention>; rel="http://webmention.org/"');
     res.end('test');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
@@ -51,7 +49,6 @@ test('successfully discovered WebMention server URL from link header', function 
     res.statusCode = 200;
     res.setHeader('Link', '<http://example.org/webmention>; rel="http://webmention.org/"');
     res.end('test');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
@@ -67,7 +64,6 @@ test('discover WebMention server URL from HTML body', function (t) {
   var server = http.createServer(function (req, res) {
     res.statusCode = 200;
     res.end('<html><head><link rel="stylesheet" href="fail.css"><link rel="http://webmention.org/" href="http://example.org/webmention"></head><body></body></html>');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
@@ -83,7 +79,6 @@ test('discover WebMention server URL from HTML body with v0.2 rel attribute', fu
   var server = http.createServer(function (req, res) {
     res.statusCode = 200;
     res.end('<html><head><link rel="stylesheet" href="fail.css"><link rel="webmention" href="http://example.org/webmention"></head><body></body></html>');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
@@ -99,7 +94,6 @@ test('the text test as a HTML response triggers no error', function (t) {
   var server = http.createServer(function (req, res) {
     res.statusCode = 200;
     res.end('test');
-    req.connection.destroy();
   }).listen(port);
 
   lookupWebmentionServer(target, function (err, url) {
