@@ -14,12 +14,12 @@
     "webmention"
   ],
   "author": "connrs",
-  "license": "BSD-3",
+  "license": "BSD-3-Clause",
   "devDependencies": {
-    "tape": "~1.0.4"
+    "tape": "^4.8.0"
   },
   "dependencies": {
-    "request": "~2.22.0",
-    "jsdom": "~0.7.0"
+    "cheerio": "^1.0.0-rc.2",
+    "request": "2.83.0"
   }
 }
