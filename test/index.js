@@ -78,6 +78,21 @@ test('discover WebMention server URL from HTML body', function (t) {
   });
 });
 
+test('discover relative WebMention server URL from HTML body', function (t) {
+  var target = 'http://' + host + ':' + port + '/good_url';
+  var server = http.createServer(function (req, res) {
+    res.statusCode = 200;
+    res.end('<html><head><link rel="stylesheet" href="fail.css"><link rel="http://webmention.org/" href="/webmention"></head><body></body></html>');
+  }).listen(port);
+
+  lookupWebmentionServer(target, function (err, url) {
+    server.close();
+    t.error(err);
+    t.equal(url, 'http://' + host + ':' + port + '/webmention');
+    t.end();
+  });
+});
+
 test('discover WebMention server URL from HTML body with v0.2 rel attribute', function (t) {
   var target = 'http://' + host + ':' + port + '/good_url';
   var server = http.createServer(function (req, res) {
