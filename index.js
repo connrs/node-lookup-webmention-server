@@ -1,3 +1,4 @@
+var url = require('url');
 var request = require('request');
 var getServerUrl = require('./lib/get-server-url');
 
@@ -59,7 +60,7 @@ LookupWebmentionServer.prototype._onGetServerUrl = function (err, serverUrl) {
     this._callback();
   }
   else {
-    this._callback(null, serverUrl);
+    this._callback(null, url.resolve(this._target, serverUrl));
   }
 };
 
